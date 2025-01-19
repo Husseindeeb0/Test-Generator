@@ -2,7 +2,7 @@ services:
   - type: web
     name: Test-Generator-Frontend
     env: static
-    staticPublishPath: /frontend/build
+    staticPublishPath: frontend/build
     buildCommand: npm install && npm run build
     branch: main
 
