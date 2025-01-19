@@ -1,6 +1,6 @@
 {
   "name": "test-generator",
-  "homepage": "https://username.github.io/Test-Generator",
+  "homepage": "/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
