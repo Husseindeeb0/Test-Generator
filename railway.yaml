@@ -1,0 +1,11 @@
+services:
+  - name: frontend
+    env: node
+    buildCommand: "npm install && npm run build"
+    startCommand: "npm run start"
+    staticPublishPath: "frontend/build"
+  
+  - name: backend
+    env: node
+    buildCommand: "npm install"
+    startCommand: "npm run start"
