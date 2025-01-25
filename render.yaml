@@ -1,0 +1,11 @@
+services:
+  - name: frontend
+    rootDirectory: frontend
+    buildCommand: npm install && npm run build
+    startCommand: npx serve -s build
+    staticPublishPath: frontend/build
+
+  - name: backend
+    rootDirectory: Backend
+    buildCommand: npm install
+    startCommand: node server.js

@@ -1,5 +1,5 @@
 const allowedOrigins = [
-  "https://test-generator-backend.onrender.com",
+  "https://test-generator-backend-xepq.onrender.com",
   "http://localhost:3000",
 ];
 
