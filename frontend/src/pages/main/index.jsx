@@ -28,7 +28,7 @@ function Main() {
         <img
           src={`${process.env.PUBLIC_URL}/image_1.png`}
           alt="side-image"
-          className="w-1/2 min-w-96 h-96 mx-5 rounded-xl shadow-custom"
+          className="w-3/4 min-w-72 h-96 mx-5 rounded-xl shadow-custom"
         />
       </section>
 
