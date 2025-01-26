@@ -19,7 +19,6 @@ const Login = () => {
       const userData = { email, password };
       const data = await authenticateUser("login", userData); // "login" is the login endpoint
       if (data?.status === "success" && data.refreshToken && data.accessToken) {
-        console.log("User logged in:", data);
         localStorage.setItem("refreshToken", data.refreshToken);
         setAccessToken(data.accessToken);
         navigate("/home");

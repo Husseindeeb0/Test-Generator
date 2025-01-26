@@ -9,8 +9,7 @@ function Context({ children }) {
   );
   const [accessToken, setAccessToken] = useState("");
 
-  // State for the number of questions in the test
-  const [questionsTestNum, setQuestionsTestNum] = useState(0);
+  const [questionsTestNum, setQuestionsTestNum] = useState(0); // State for the number of questions in the test
   const [testTitle, setTestTitle] = useState(""); // Manual Category
   const [manualTestDifficulty, setManualTestDifficulty] = useState("Easy"); // Manual Difficulty
   const [userAnswers, setUserAnswers] = useState([]); // State to store user's answers to the test

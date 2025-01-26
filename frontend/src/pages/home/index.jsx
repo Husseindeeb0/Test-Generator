@@ -204,7 +204,7 @@ function Home() {
       </div>
 
       {/* Loading spinner displayed in the center while loading */}
-      <div className="absolute top-1/2 loader-centered transition">
+      <div className="fixed top-1/2 loader-centered transition">
         <BeatLoader
           color="#2d8160"
           loading={loading}

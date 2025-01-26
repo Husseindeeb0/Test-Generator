@@ -18,7 +18,6 @@ function Nav() {
       // Clear localStorage and in-memory variables
       localStorage.removeItem("refreshToken");
       setAccessToken(null);
-      console.log("User logged out successfully");
     } catch (error) {
       console.error("Error during logout:", error.message);
     }

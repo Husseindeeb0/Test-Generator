@@ -15,7 +15,6 @@ const checkTokenValidity = async (accessToken) => {
     const data = await response.json();
 
     if (data?.message) {
-      console.log(data.message)
       return false;
     }
 

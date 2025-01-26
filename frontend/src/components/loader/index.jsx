@@ -10,20 +10,18 @@ function Loader() {
     // Show loader when the location changes
     setLoading(true);
 
-    // Set a timer to hide the loader after a certain time (e.g., 2 seconds)
+    // Set a timer to hide the loader after a certain time
     const timeout = setTimeout(() => {
       setLoading(false);
-    }, 2000); // Change time as per your requirement
+    }, 2000);
 
     return () => clearTimeout(timeout); // Cleanup timeout
   }, [location]);
 
-  // Display the loader if loading is true
   return (
     <>
       {loading && (
         <div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center bg-slate-800 z-50">
-          {/* Replace with your spinner or loader */}
           <Puff
             visible={true}
             height="80"
