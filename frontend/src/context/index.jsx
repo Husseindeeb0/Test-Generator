@@ -25,7 +25,7 @@ function Context({ children }) {
   const fetchUserTests = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/tests/fetchtests", {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/tests/fetchtests`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -45,7 +45,7 @@ function Context({ children }) {
 
   const saveTest = async (testData, manualTest = false) => {
     try {
-      const response = await fetch(`http://localhost:5000/tests/save`, {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/tests/save`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
