@@ -19,7 +19,6 @@ const Signup = () => {
       const userData = { email, password };
       const data = await authenticateUser("register", userData); // "register" is the signup endpoint
       if (data?.status === "success" && data.refreshToken && data.accessToken) {
-        console.log("User registered:", data);
         localStorage.setItem("refreshToken", data.refreshToken);
         setAccessToken(data.accessToken);
         navigate("/home");

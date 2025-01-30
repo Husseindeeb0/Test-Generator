@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const User = require("../models/User");
+const { User } = require("../models/User");
 
 // Register a new user
 const register = async (req, res) => {
@@ -35,14 +35,6 @@ const register = async (req, res) => {
       process.env.REFRESH_SECRET_KEY,
       { expiresIn: "7d" }
     );
-
-    // // Send refreshToken in a cookie
-    // res.cookie("jwt", refreshToken, {
-    //   httpOnly: true,
-    //   secure: false, // Secure cookie for production
-    //   sameSite: "None",
-    //   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-    // });
 
     res.status(201).json({
       status: "success",

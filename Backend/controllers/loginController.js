@@ -5,7 +5,6 @@ const { User } = require("../models/User");
 // Login user
 const login = async (req, res) => {
   const { email, password } = req.body;
-  console.log("Logging in Now")
   if (!email || !password) {
     return res.status(400).json({ message: "Email and Password are Required" });
   }
@@ -32,14 +31,6 @@ const login = async (req, res) => {
       process.env.REFRESH_SECRET_KEY,
       { expiresIn: "7d" }
     );
-
-    // Send refreshToken in a cookie
-    // res.cookie("jwt", refreshToken, {
-    //   httpOnly: true,
-    //   secure: false, // Secure cookie for production
-    //   sameSite: "None",
-    //   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-    // });
 
     res.status(200).json({
       message: "Login successful",
