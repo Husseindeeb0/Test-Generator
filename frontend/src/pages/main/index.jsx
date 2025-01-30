@@ -142,7 +142,7 @@ function Main() {
 
       <section className="mb-20 mx-5">
         <h1 className="text-3xl text-center mt-24 text-white">
-          Thousands of organizations rely on FlexiQuiz
+          Thousands of organizations rely on TestGenerator
         </h1>
         <div className="flex justify-center gap-10 my-10">
           <div className="text-white w-52 border-r-2">
