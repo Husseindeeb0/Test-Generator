@@ -15,7 +15,7 @@ function Main() {
           </p>
           <p className="text-3xl text-white">
             Create, send, and analyze your tests, quizzes, and assessments for
-            free with FlexiQuiz.
+            free with TestGenerator.
           </p>
           <Link
             to="/home"

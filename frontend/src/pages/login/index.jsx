@@ -23,6 +23,7 @@ const Login = () => {
         setAccessToken(data.accessToken);
         navigate("/home");
       } else {
+        setError(data.message)
         console.log(data.message);
       }
     } catch (err) {

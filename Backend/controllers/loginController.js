@@ -12,7 +12,7 @@ const login = async (req, res) => {
   // Find user by email
   const user = await User.findOne({ email: email }).exec();
   if (!user) {
-    return res.status(401).json({ message: "Unauthorized" }); // Unauthorized
+    return res.status(401).json({ message: "Incorrect Email" }); // Unauthorized
   }
 
   // Compare password
@@ -39,7 +39,7 @@ const login = async (req, res) => {
       refreshToken,
     });
   } else {
-    res.status(401).json({ message: "Unauthorized" });
+    res.status(401).json({ message: "Incorrect Password" });
   }
 };
 

@@ -1,8 +1,10 @@
 import "./style.css";
 import Footer from "../../components/footer";
 import { GlobalContext } from "../../context";
+import deleteTest from "../../utils/deleteTest";
 import { useContext } from "react";
 import { CiFileOff } from "react-icons/ci";
+import { FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import BeatLoader from "react-spinners/BeatLoader";
 import { Helmet } from "react-helmet-async";
@@ -65,8 +67,8 @@ function Home() {
         <title>Generate Your Tests Easily and Effortlessly</title>
       </Helmet>
       {/* Main content container with conditional opacity based on loading state */}
-      <div className="transition" style={{ opacity: loading ? "70%" : "100%" }}>
-        <div className="mt-10 mx-10 sm:mx-auto max-w-96 p-4 rounded-md shadow-lg bg-slate-800">
+      <div className="transition">
+        <div className="mt-10 mx-auto max-w-96 p-4 rounded-md shadow-lg bg-slate-800">
           <p className="text-white text-lg mb-5">
             To let us generate your quiz fill the below info
           </p>
@@ -130,9 +132,13 @@ function Home() {
                   className="w-full flex flex-col bg-white rounded-lg shadow-lg border border-slate-300 overflow-hidden"
                 >
                   {/* Display test details */}
-                  <span className="font-semibold text-2xl p-4 text-white bg-emerald-500">
-                    Test {testIndex + 1}
-                  </span>
+                  <div className="flex justify-between items-center font-semibold text-2xl p-4 text-white bg-emerald-500">
+                    <span className="">Test {testIndex + 1}</span>
+                    <FaTimes
+                      className="cursor-pointer"
+                      onClick={() => deleteTest(`delete/${test._id}`)}
+                    />
+                  </div>
 
                   {/* Test content container */}
                   <div className="p-5">
@@ -204,15 +210,17 @@ function Home() {
       </div>
 
       {/* Loading spinner displayed in the center while loading */}
-      <div className="fixed top-1/2 loader-centered transition">
-        <BeatLoader
-          color="#2d8160"
-          loading={loading}
-          size={50}
-          aria-label="Loading Spinner"
-          data-testid="loader"
-        />
-      </div>
+      {loading && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 transition">
+          <BeatLoader
+            color="#2d8160"
+            loading={loading}
+            size={50}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
+      )}
 
       {/* Render footer */}
       <Footer />

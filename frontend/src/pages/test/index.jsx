@@ -129,23 +129,25 @@ function Test() {
                     </h2>
                     <div className="pl-4 space-y-3">
                       {question.options.map((option, oIndex) => (
-                        <div
-                          key={oIndex}
-                          className="flex items-center space-x-3"
-                        >
-                          <input
-                            type="radio"
-                            name={`question-${qIndex}`}
-                            value={option}
-                            required
-                            checked={userAnswers[qIndex] === oIndex}
-                            onChange={() => handleOptionChange(qIndex, oIndex)}
-                            className="w-5 h-5 cursor-pointer accent-emerald-700"
-                          />
-                          <label className="text-lg font-medium cursor-pointer">
-                            {option}
-                          </label>
-                        </div>
+                        <label
+                        key={oIndex}
+                        htmlFor={`question-${qIndex}-option-${oIndex}`}
+                        className="flex items-center space-x-3 cursor-pointer"
+                      >
+                        <input
+                          id={`question-${qIndex}-option-${oIndex}`}
+                          type="radio"
+                          name={`question-${qIndex}`}
+                          value={option}
+                          required
+                          checked={userAnswers[qIndex] === oIndex}
+                          onChange={() => handleOptionChange(qIndex, oIndex)}
+                          className="w-5 h-5 cursor-pointer accent-emerald-700"
+                        />
+                        <span className="text-lg font-medium">
+                          {decodeHtmlEntities(option)}
+                        </span>
+                      </label>
                       ))}
                     </div>
                   </div>
