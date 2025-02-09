@@ -11,13 +11,16 @@ import { Helmet } from "react-helmet-async";
 
 function Home() {
   const {
+    accessToken,
     handleSubmit,
+    fetchUserTests,
     setCategory,
     setDifficulty,
     limit,
     setLimit,
     testsData,
     loading,
+    setLoading
   } = useContext(GlobalContext);
   const generatedTests = testsData.filter((test) => !test.manualTest);
 
@@ -136,7 +139,7 @@ function Home() {
                     <span className="">Test {testIndex + 1}</span>
                     <FaTimes
                       className="cursor-pointer"
-                      onClick={() => deleteTest(`delete/${test._id}`)}
+                      onClick={() => deleteTest(test._id, accessToken, fetchUserTests, setLoading)}
                     />
                   </div>
 
