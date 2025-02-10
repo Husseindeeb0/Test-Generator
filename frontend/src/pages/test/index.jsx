@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../context";
 import { useLocation } from "react-router-dom";
+import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
 function Test() {
   const { setUserAnswers } = useContext(GlobalContext);
@@ -13,7 +14,7 @@ function Test() {
   const [score, setScore] = useState(0);
   const [questionsWithOptions, setQuestionsWithOptions] = useState([]);
   const [correctAnswerIndices, setCorrectAnswerIndices] = useState([]);
-
+  const [questionsAnswerState, setQuestionsAnswerState] = useState([]);
   const location = useLocation();
   const { test, testIndex } = location.state;
 
@@ -54,9 +55,10 @@ function Test() {
     let correctCount = 0;
     userAnswers.forEach((answer, index) => {
       if (answer === correctAnswerIndices[index]) {
+        setQuestionsAnswerState((previous) => [...previous, true]);
         correctCount++;
       }
-      // }
+      setQuestionsAnswerState((previous) => [...previous, false]);
     });
     setScore(correctCount);
   };
@@ -94,6 +96,73 @@ function Test() {
             You scored <span className="font-bold">{score}</span> out of{" "}
             <span className="font-bold">{test.length}</span>
           </p>
+          <div>
+            {questionsWithOptions.map((question, qIndex) => (
+              <div
+                key={qIndex}
+                className="mb-8 bg-gray-200 p-6 rounded-lg shadow-sm"
+              >
+                <h2 className="text-xl font-semibold my-4">
+                  Question {qIndex + 1}:{" "}
+                  <span className="text-emerald-700">
+                    {decodeHtmlEntities(question.question)}
+                  </span>
+                </h2>
+                {questionsAnswerState[qIndex] ? (
+                  <div className="pl-4 space-y-3">
+                    {question.options.map((option, oIndex) => (
+                      <div
+                        key={oIndex}
+                        className="flex items-center space-x-3 cursor-pointer"
+                      >
+                        {correctAnswerIndices[qIndex] === oIndex ? (
+                          <span className="text-lg font-medium text-green-500 flex items-center space-x-2">
+                            <FaCheckCircle className="text-xl" />
+                            <span>
+                              {decodeHtmlEntities(option)}
+                            </span>
+                          </span>
+                        ) : (
+                          <span className="text-lg font-medium">
+                            {decodeHtmlEntities(option)}
+                          </span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="pl-4 space-y-3">
+                    {question.options.map((option, oIndex) => (
+                      <div
+                        key={oIndex}
+                        className="flex items-center space-x-3 cursor-pointer"
+                      >
+                        {correctAnswerIndices[qIndex] === oIndex ? (
+                          <span className="text-lg font-medium text-green-500 flex items-center space-x-2">
+                            <FaCheckCircle className="text-xl" />
+                            <span>
+                              {decodeHtmlEntities(option)}
+                            </span>
+                          </span>
+                        ) : userAnswers[qIndex] === oIndex ? (
+                          <span className="text-lg font-medium text-red-500 flex items-center space-x-2">
+                            <FaTimesCircle className="text-xl" />
+                            <span>
+                              {decodeHtmlEntities(option)}
+                            </span>
+                          </span>
+                        ) : (
+                          <span className="text-lg font-medium">
+                            {decodeHtmlEntities(option)}
+                          </span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
           <button
             onClick={handleTryAgain}
             className="mt-4 bg-emerald-500 hover:bg-emerald-700 text-white py-2 px-6 rounded-lg shadow-md block mx-auto"
@@ -130,24 +199,24 @@ function Test() {
                     <div className="pl-4 space-y-3">
                       {question.options.map((option, oIndex) => (
                         <label
-                        key={oIndex}
-                        htmlFor={`question-${qIndex}-option-${oIndex}`}
-                        className="flex items-center space-x-3 cursor-pointer"
-                      >
-                        <input
-                          id={`question-${qIndex}-option-${oIndex}`}
-                          type="radio"
-                          name={`question-${qIndex}`}
-                          value={option}
-                          required
-                          checked={userAnswers[qIndex] === oIndex}
-                          onChange={() => handleOptionChange(qIndex, oIndex)}
-                          className="w-5 h-5 cursor-pointer accent-emerald-700"
-                        />
-                        <span className="text-lg font-medium">
-                          {decodeHtmlEntities(option)}
-                        </span>
-                      </label>
+                          key={oIndex}
+                          htmlFor={`question-${qIndex}-option-${oIndex}`}
+                          className="flex items-center space-x-3 cursor-pointer"
+                        >
+                          <input
+                            id={`question-${qIndex}-option-${oIndex}`}
+                            type="radio"
+                            name={`question-${qIndex}`}
+                            value={option}
+                            required
+                            checked={userAnswers[qIndex] === oIndex}
+                            onChange={() => handleOptionChange(qIndex, oIndex)}
+                            className="w-5 h-5 cursor-pointer accent-emerald-700"
+                          />
+                          <span className="text-lg font-medium">
+                            {decodeHtmlEntities(option)}
+                          </span>
+                        </label>
                       ))}
                     </div>
                   </div>
