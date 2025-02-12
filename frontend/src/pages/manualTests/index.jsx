@@ -1,9 +1,11 @@
 import { GlobalContext } from "../../context";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { FaTimes } from "react-icons/fa";
+import deleteTest from "../../utils/deleteTest";
 
 function ManualTests() {
-  const { testsData } = useContext(GlobalContext);
+  const { testsData, fetchUserTests, setLoading, accessToken } = useContext(GlobalContext);
   const manualTests = testsData.filter((test) => test.manualTest);
   return (
     <div className="bg-slate-800 min-h-52 mt-10 p-7">
@@ -15,9 +17,20 @@ function ManualTests() {
               className="w-full flex flex-col bg-white rounded-lg shadow-lg border border-slate-300 overflow-hidden"
             >
               {/* Display test details */}
-              <span className="font-semibold text-2xl p-4 text-white bg-emerald-500">
-                Test {testIndex + 1}
-              </span>
+              <div className="flex justify-between items-center font-semibold text-2xl p-4 text-white bg-emerald-500">
+                <span className="">Test {testIndex + 1}</span>
+                <FaTimes
+                  className="cursor-pointer"
+                  onClick={() =>
+                    deleteTest(
+                      test._id,
+                      accessToken,
+                      fetchUserTests,
+                      setLoading
+                    )
+                  }
+                />
+              </div>
 
               {/* Test content container */}
               <div className="p-5">

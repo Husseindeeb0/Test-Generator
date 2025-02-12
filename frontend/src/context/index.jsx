@@ -9,6 +9,8 @@ function Context({ children }) {
   );
   const [accessToken, setAccessToken] = useState("");
 
+  const [score, setScore] = useState(0);
+
   const [questionsTestNum, setQuestionsTestNum] = useState(0); // State for the number of questions in the test
   const [testTitle, setTestTitle] = useState(""); // Manual Category
   const [manualTestDifficulty, setManualTestDifficulty] = useState("easy"); // Manual Difficulty
@@ -121,6 +123,8 @@ function Context({ children }) {
         setIsAuthenticated,
         saveTest,
         fetchUserTests,
+        score,
+        setScore,
       }}
     >
       {children}

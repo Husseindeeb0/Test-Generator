@@ -20,7 +20,7 @@ function Home() {
     setLimit,
     testsData,
     loading,
-    setLoading
+    setLoading,
   } = useContext(GlobalContext);
   const generatedTests = testsData.filter((test) => !test.manualTest);
 
@@ -139,7 +139,14 @@ function Home() {
                     <span className="">Test {testIndex + 1}</span>
                     <FaTimes
                       className="cursor-pointer"
-                      onClick={() => deleteTest(test._id, accessToken, fetchUserTests, setLoading)}
+                      onClick={() =>
+                        deleteTest(
+                          test._id,
+                          accessToken,
+                          fetchUserTests,
+                          setLoading
+                        )
+                      }
                     />
                   </div>
 
@@ -214,7 +221,7 @@ function Home() {
 
       {/* Loading spinner displayed in the center while loading */}
       {loading && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 transition">
+        <div className="fixed inset-0 z-40 flex items-center justify-center bg-black bg-opacity-60 transition">
           <BeatLoader
             color="#2d8160"
             loading={loading}

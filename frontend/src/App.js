@@ -9,12 +9,15 @@ import Loader from "./components/loader";
 import Nav from "./components/navbar";
 import Signup from "./pages/signup";
 import Login from "./pages/login";
+import Results from "./pages/results";
 import ProtectedRoutes from "./components/protectedRoutes";
+import ScrollToTop from "./components/scrollToTop";
 
 function App() {
   return (
     <Context>
       <HashRouter>
+        <ScrollToTop />
         <Nav />
         <Loader />
         <Routes>
@@ -29,6 +32,7 @@ function App() {
             <Route path="/generator" element={<Generator />} />
             <Route path="/manualtests" element={<ManualTests />} />
             <Route path="/test" element={<Test />} />
+            <Route path="/results" element={<Results />} />
           </Route>
         </Routes>
       </HashRouter>
