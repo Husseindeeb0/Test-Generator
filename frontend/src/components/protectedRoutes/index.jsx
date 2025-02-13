@@ -33,7 +33,7 @@ const ProtectedRoutes = () => {
     };
 
     verifyAuth();
-  }, [accessToken, refreshToken, setAccessToken]);
+  }, [accessToken]);
 
   // Show loader while verifying authentication
   if (isVerifying) {

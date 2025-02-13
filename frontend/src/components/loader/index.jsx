@@ -4,18 +4,28 @@ import { Puff } from "react-loader-spinner";
 
 function Loader() {
   const location = useLocation(); // Detect route changes
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true); // Start with loading true
 
   useEffect(() => {
     // Show loader when the location changes
     setLoading(true);
 
-    // Set a timer to hide the loader after a certain time
-    const timeout = setTimeout(() => {
+    // Wait for the full page load
+    const handleLoad = () => {
       setLoading(false);
-    }, 2000);
+    };
 
-    return () => clearTimeout(timeout); // Cleanup timeout
+    if (document.readyState === "complete") {
+      // If page is already loaded, remove loader immediately
+      setLoading(false);
+    } else {
+      // Otherwise, wait for the window load event
+      window.addEventListener("load", handleLoad);
+    }
+
+    return () => {
+      window.removeEventListener("load", handleLoad);
+    };
   }, [location]);
 
   return (
@@ -28,8 +38,6 @@ function Loader() {
             width="80"
             color="#10b981"
             ariaLabel="puff-loading"
-            wrapperStyle={{}}
-            wrapperClass=""
           />
         </div>
       )}

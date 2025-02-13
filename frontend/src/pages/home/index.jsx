@@ -71,58 +71,59 @@ function Home() {
       </Helmet>
       {/* Main content container with conditional opacity based on loading state */}
       <div className="transition">
-        <div className="mt-10 mx-5 sm:mx-auto max-w-96 p-4 rounded-md shadow-lg bg-slate-800">
-          <p className="text-white text-lg mb-5">
-            To let us generate your quiz fill the below info
-          </p>
+        <div className="flex justify-center">
+          <div className="mt-10 mx-5 max-w-96 p-4 rounded-md shadow-lg bg-slate-800">
+            <p className="text-white text-lg mb-5">
+              To let us generate your quiz fill the below info
+            </p>
 
-          {/* Form to generate quiz by setting category, limit, and difficulty */}
-          <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-            {/* Dropdown to select quiz category */}
-            <select
-              onChange={(e) => setCategory(e.target.value)}
-              className="rounded-xl px-2 py-2 text-xl shadow-md shadow-emerald-500 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500"
-              required
-            >
-              {categoryOptions.map((category, index) => (
-                <option key={index} value={index === 0 ? null : index + 9}>
-                  {category}
+            {/* Form to generate quiz by setting category, limit, and difficulty */}
+            <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+              {/* Dropdown to select quiz category */}
+              <select
+                onChange={(e) => setCategory(e.target.value)}
+                className="rounded-xl px-2 py-2 text-xl shadow-md shadow-emerald-500 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                required
+              >
+                {categoryOptions.map((category, index) => (
+                  <option key={index} value={index === 0 ? null : index + 9}>
+                    {category}
+                  </option>
+                ))}
+              </select>
+
+              {/* Input field for entering the number of quiz questions */}
+              <input
+                type="number"
+                className="rounded-xl px-2 py-2 text-xl shadow-md shadow-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                placeholder="Enter the number of questions"
+                required
+                value={limit}
+                onChange={(e) => setLimit(e.target.value)}
+              />
+
+              {/* Dropdown to select quiz difficulty level */}
+              <select
+                onChange={(e) => setDifficulty(e.target.value)}
+                className="rounded-xl px-2 py-2 text-xl shadow-md shadow-emerald-500 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                required
+              >
+                <option value="easy" defaultChecked>
+                  Easy
                 </option>
-              ))}
-            </select>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
 
-            {/* Input field for entering the number of quiz questions */}
-            <input
-              type="number"
-              className="rounded-xl px-2 py-2 text-xl shadow-md shadow-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
-              placeholder="Enter the number of questions"
-              required
-              value={limit}
-              onChange={(e) => setLimit(e.target.value)}
-            />
-
-            {/* Dropdown to select quiz difficulty level */}
-            <select
-              onChange={(e) => setDifficulty(e.target.value)}
-              className="rounded-xl px-2 py-2 text-xl shadow-md shadow-emerald-500 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500"
-              required
-            >
-              <option value="easy" defaultChecked>
-                Easy
-              </option>
-              <option value="medium">Medium</option>
-              <option value="hard">Hard</option>
-            </select>
-
-            {/* Submit button to generate the quiz */}
-            <input
-              type="submit"
-              value="Generate Quiz"
-              className="w-full cursor-pointer text-xl bg-emerald-500 hover:bg-emerald-700 text-white rounded-md py-1"
-            />
-          </form>
+              {/* Submit button to generate the quiz */}
+              <input
+                type="submit"
+                value="Generate Quiz"
+                className="w-full cursor-pointer text-xl bg-emerald-500 hover:bg-emerald-700 text-white rounded-md py-1"
+              />
+            </form>
+          </div>
         </div>
-
         {/* Section to display the generated tests */}
         <div className="bg-slate-800 min-h-52 mt-10 p-7">
           {generatedTests &&

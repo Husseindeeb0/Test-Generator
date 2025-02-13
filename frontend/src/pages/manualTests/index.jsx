@@ -3,9 +3,11 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 import deleteTest from "../../utils/deleteTest";
+import BeatLoader from "react-spinners/BeatLoader";
 
 function ManualTests() {
-  const { testsData, fetchUserTests, setLoading, accessToken } = useContext(GlobalContext);
+  const { testsData, fetchUserTests, setLoading, loading, accessToken } =
+    useContext(GlobalContext);
   const manualTests = testsData.filter((test) => test.manualTest);
   return (
     <div className="bg-slate-800 min-h-52 mt-10 p-7">
@@ -101,6 +103,18 @@ function ManualTests() {
           >
             Generate Test
           </Link>
+        </div>
+      )}
+
+      {loading && (
+        <div className="fixed inset-0 z-40 flex items-center justify-center bg-black bg-opacity-60 transition">
+          <BeatLoader
+            color="#2d8160"
+            loading={loading}
+            size={50}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
         </div>
       )}
     </div>
