@@ -8,12 +8,10 @@ const refreshTokenFunction = async () => {
       },
       body: JSON.stringify({ refreshToken }),
     });
-
-    if (!response.ok) {
-      console.log("Something went wrong", response);
-    }
-
     const data = await response.json();
+    if (!response.ok || !data) {
+      console.log("Error:", data.message);
+    }
 
     return data.accessToken;
   } catch (error) {
