@@ -71,8 +71,8 @@ function Home() {
       </Helmet>
       {/* Main content container with conditional opacity based on loading state */}
       <div className="transition">
-        <div className="flex justify-center mx-5">
-          <div className="mt-10 max-w-96 p-4 rounded-md shadow-lg bg-slate-800">
+        <div className="flex justify-center">
+          <div className="mt-10 w-80 sm:max-w-96 p-4 rounded-md shadow-lg bg-slate-800">
             <p className="text-white text-lg mb-5">
               To let us generate your quiz fill the below info
             </p>

@@ -3,7 +3,6 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
 import Loader from "../loader";
 import verifyRefreshAuth from "../../utils/verifyRefreshAuth";
 import { GlobalContext } from "../../context";
-import BeatLoader from "react-spinners/BeatLoader";
 
 const ProtectedRoutes = () => {
   const {
@@ -16,9 +15,7 @@ const ProtectedRoutes = () => {
   const location = useLocation();
   const refreshToken = localStorage.getItem("refreshToken");
   const [isVerifying, setIsVerifying] = useState(true); // Tracks if auth verification is in progress
-  const [loading, setLoading] = useState(false);
   useEffect(() => {
-    setLoading(true);
     const verifyAuth = async () => {
       const authStatus = await verifyRefreshAuth(
         accessToken,
@@ -35,7 +32,6 @@ const ProtectedRoutes = () => {
     };
 
     verifyAuth();
-    setLoading(false);
   }, [accessToken]);
 
   // Show loader while verifying authentication
